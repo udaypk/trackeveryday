@@ -41,7 +41,7 @@ The program is up and running till you shutdown the computer. To configure the e
 ### Features
 This is a very simple program with a simple GUI. "settings.txt" contains 3 configurable parameters and GUI has 3 buttons.
 
-[GUI](https://github.com/udaypk/trackeveryday/blob/master/GUI.jpg)
+[![GUI](https://github.com/udaypk/trackeveryday/blob/master/GUI.jpg)]
 #### settings.txt 
 There are just 3 parameters to configure as per your choice.
   * NotificationInterval => This is the time interval at which you want to receive a notification window (in minutes). If you keep this value as 15, you will receive notification every 15 minutes.
