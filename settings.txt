@@ -1,0 +1,20 @@
+#Do not change any text before ":" in each row below. 
+##################################
+#Change the number in below row for setting time interval at which you want to receive notification window (in minutes)
+################################## 
+#*********************************
+NotificationInterval:15
+#*********************************
+##################################
+#Add as may tasks as you want in the list below coma seperated
+##################################
+#*********************************
+Tasks:[Task1, Task2, Meetings, Stand, Water]
+#*********************************
+##################################
+#Number of minutes notifications should pause when "Pause" button is pressed
+##################################
+#*********************************
+PauseInterval:60
+#*********************************
+##################################
