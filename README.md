@@ -5,7 +5,8 @@ A non-intrusive and periodic notification program to track every day activities 
   * Download TrackEveryday.exe from windows10_distribution folder. 
   * Download settings.txt from windows10_distribution folder. 
   * Keep both files in the same folder.
-  * Customize the values of NotificationInterval, Tasks and PauseInterval in settings.txt as per the instructions there.
+  * Run the TrackEveryday.exe (by clicking or double clicking on it) 
+  * You can customize the values of NotificationInterval, Tasks and PauseInterval in settings.txt as per the instructions there.
 
 
 # Application description
