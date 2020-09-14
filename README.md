@@ -1,3 +1,10 @@
+# TL;DR
+  * Download TrackEveryday.exe from windows10_distribution folder. 
+  * Download settings.txt from windows10_distribution folder. 
+  * Keep both files in the same folder.
+  * Customize the values of NotificationInterval, Tasks and PauseInterval in settings.txt as per the instructions there.
+
+
 # TrackEveryday
 This is a non-intrusive and periodic notification program to track every day activities from work projects to personal tasks.  
 You can configure a list of every day tasks to measure for yourself the time spent on each task on a daily/weekly/monthly basis.
@@ -57,7 +64,7 @@ There is also a text box present on the right side of every task. This is a way 
 For example your NotificationInterval is 15 minutes and you forgot to click on the notification window for 45 minutes, you can enter 2 in the text box next to the task so that extra 2*NotificationInterval time is logged.
 
 ## Build from python source
-You can build this program for Windows, Mac OS and Linux using pyinstaller 
+You can build this program for Windows, Mac OS and Linux using pyinstaller. 
 Clone the repository and run the command 
 ```
 pyinstaller --onefile -w 'TrackEveryday.py'
@@ -75,6 +82,6 @@ pyinstaller --onefile -w 'TrackEveryday.py'
   year = {2020},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/udaypk/trackeveryday}},
+  howpublished = {\url{https://github.com/udaypk/trackeveryday}}
 }
 ```
