@@ -12,14 +12,14 @@ from os import listdir
 from os.path import isfile, join
 
 class Application(tk.Frame):
-  def __init__(self, master,tasks_list,task_vars,task_intervals,notification_interval,pauseInterval,pause_pressed,show_logs_pressed):
+  def __init__(self, master,tasks_list,task_vars,task_intervals,notification_interval,pauseInterval_ui_input,pause_pressed,show_logs_pressed):
     super().__init__(master)
     self.master = master
     self.task_vars=task_vars
     self.task_intervals=task_intervals
     self.tasks_list=tasks_list
     self.notification_interval=notification_interval
-    self.pauseInterval=pauseInterval
+    self.pauseInterval_ui_input=pauseInterval_ui_input
     self.pause_pressed=pause_pressed
     self.show_logs_pressed=show_logs_pressed
     self.pack()
@@ -27,16 +27,19 @@ class Application(tk.Frame):
 
   def create_widgets(self):
     helv14 = tkFont.Font(family='Helvetica', size=14) #weight='bold'
+    helv12bold = tkFont.Font(family='Helvetica', size=10, weight='bold')
     for count, task in enumerate(self.tasks_list):
       task=tk.Checkbutton(self, text=task, onvalue = 1, offvalue = 0, variable=self.task_vars[count], font=helv14).grid(row=count, column=0, sticky='W')
-      task=tk.Entry(self, textvariable=self.task_intervals[count], width=2, font=helv14).grid(row=count, column=1, sticky='W')
+      task=tk.Entry(self, textvariable=self.task_intervals[count], width=2, font=helv14).grid(row=count, column=2, sticky='W')
 
-    done = tk.Button(self, text="Done", bd=6, width=20, fg="red",command=self.log_time)
-    done.grid(row=len(tasks_list), columnspan=2)
-    show_logs = tk.Button(self, text="Show", bd=6, fg="red",command=self.show_logs)
+    done = tk.Button(self, text="Done", bd=6, width=20, fg="red", font=helv12bold, command=self.log_time)
+    done.grid(row=len(tasks_list), columnspan=3)
+    show_logs = tk.Button(self, text="ShowLogs", bd=6, fg="red",font=helv12bold, command=self.show_logs)
     show_logs.grid(row=len(tasks_list)+1, column=0, sticky='W')
-    pause_notif = tk.Button(self, text="Pause", bd=6, fg="red",command=self.pause_notif)
-    pause_notif.grid(row=len(tasks_list)+1, column=1, sticky='E')
+    pause_intvl=tk.Entry(self, textvariable=self.pauseInterval_ui_input, width=3, font=helv14)
+    pause_intvl.grid(row=len(tasks_list)+1, column=1, sticky='W')
+    pause_notif = tk.Button(self, text="Pause", bd=6, fg="red",font=helv12bold, command=self.pause_notif)
+    pause_notif.grid(row=len(tasks_list)+1, column=2, sticky='W')
 
   def log_time(self):
     currentMonth = datetime.now().strftime('%m')
@@ -127,6 +130,15 @@ class ShowLogApp(tk.Frame):
       os.makedirs(os.path.join(os.getcwd(),'Logs'))    
     log_file_df.to_csv(os.path.join(os.getcwd(),'Logs','SavedLog_'+datetime.now().strftime("%Y_%m_%d_%H_%M")+".tsv"),index=False,header=False,sep='\t')
   
+def measure_str_width(str): 
+  upper, other, str_width = 0, 0, 0
+  for i in range(len(str)): 
+    if str[i].isupper(): 
+      upper += 13 #upper case characters are 13 px in width on average
+    else: 
+      other += 9.3 ##other characters are 9.3 px in width on average 
+  str_width=round(upper+other) 
+  return str_width      
 
 if __name__ == "__main__":
   while 1:
@@ -145,20 +157,29 @@ if __name__ == "__main__":
     task_intervals=[]
     pause_pressed=tk.IntVar()
     pause_pressed.set(0)
+    pauseInterval_ui_input=tk.IntVar()
+    pauseInterval_ui_input.set(pauseInterval)
     show_logs_pressed=tk.IntVar()
     show_logs_pressed.set(0)
+    max_task_width=0
     for task in tasks_list:
+      curr_task_width=measure_str_width(task)
+      max_task_width = curr_task_width if curr_task_width > max_task_width else max_task_width
       task_vars.append(tk.IntVar())
       task_intervals.append(tk.StringVar())
-    notif_window = Application(root,tasks_list,task_vars,task_intervals,notification_interval,pauseInterval,pause_pressed,show_logs_pressed)
+    notif_window = Application(root,tasks_list,task_vars,task_intervals,notification_interval,pauseInterval_ui_input,pause_pressed,show_logs_pressed)
     notif_window.master.title('Test')
     ws = notif_window.master.winfo_screenwidth() # width of the screen 
     hs = notif_window.master.winfo_screenheight() # height of the screen
-    #print("Windows screendim= "+ str(ws)+ " "+str(hs))
+    print("Windows screendim= "+ str(ws)+ " "+str(hs))
     notif_window_height=70+len(tasks_list)*34
     notif_window_vert_position=688-len(tasks_list)*34
+    print(max_task_width)
+    notif_window_width=126+max_task_width #160 15 upper chars == 21*15  210 for 10 char  12.7 for uppercase characters
+    notif_window_hor_position=1140-max_task_width #1080 1266-124
+    
     #notif_window.master.geometry('160x'+str(notif_window_height)+'+1080+'+str(notif_window_vert_position)) #172,138
-    notif_window.master.geometry('160x'+str(notif_window_height)+'+1080+0') #172,138
+    notif_window.master.geometry(str(notif_window_width)+'x'+str(notif_window_height)+'+'+str(notif_window_hor_position)+'+5') #172,138
     notif_window.master.overrideredirect(True)
     notif_window.master.attributes('-topmost', True)
     notif_window.master.configure(background='black')    
@@ -168,6 +189,8 @@ if __name__ == "__main__":
     sleep_duration_mins=notification_interval
     if pause_pressed.get()==1:
       sleep_duration_mins=pauseInterval
+      if pauseInterval_ui_input.get():
+        sleep_duration_mins=int(pauseInterval_ui_input.get())
     if show_logs_pressed.get()==1:
       root = tk.Tk()
       show_logs_window = ShowLogApp(root)
