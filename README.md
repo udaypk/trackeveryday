@@ -1,3 +1,6 @@
+# TrackEveryday
+A non-intrusive and periodic notification program to track every day activities from work projects to personal tasks.
+
 # TL;DR
   * Download TrackEveryday.exe from windows10_distribution folder. 
   * Download settings.txt from windows10_distribution folder. 
@@ -5,7 +8,7 @@
   * Customize the values of NotificationInterval, Tasks and PauseInterval in settings.txt as per the instructions there.
 
 
-# TrackEveryday
+# Application description
 This is a non-intrusive and periodic notification program to track every day activities from work projects to personal tasks.  
 You can configure a list of every day tasks to measure for yourself the time spent on each task on a daily/weekly/monthly basis.
 The tasks can be work tasks like different projects, meetings etc., or personal tasks like, while working from home, how much time you are spending standing at your standing desk, how many times you are drinking water etc. 
