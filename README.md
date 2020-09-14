@@ -10,10 +10,10 @@ A non-intrusive and periodic notification program to track every day activities 
 
 # Application description
 This is a non-intrusive and periodic notification program to track every day activities from work projects to personal tasks.  
-You can configure a list of every day tasks to measure for yourself the time spent on each task on a daily/weekly/monthly basis.
-The tasks can be work tasks like different projects, meetings etc., or personal tasks like, while working from home, how much time you are spending standing at your standing desk, how many times you are drinking water etc. 
-You can configure all the tasks you want to track in \"settings.txt\" file (\"Tasks\" field) and the program will show a notification window every \"x\" minutes (This \"x\" can also be configured using the \"NotificationInterval\" field in \"serttings.txt\")
-The repository has a precompiled Windows 10 executable in \"windows10_distribution\" folder. Or you can use the python source code (and pyinstaller package) to build on Mac OS or Linux. 
+You can configure a list of every day tasks to measure for yourself the time spent on each task on a daily/weekly/monthly basis.    
+The tasks can be work tasks like different projects, meetings etc., or personal tasks like, while working from home, how much time you are spending standing at your standing desk, how many times you are drinking water etc.   
+You can configure all the tasks you want to track in \"settings.txt\" file (\"Tasks\" field) and the program will show a notification window every \"x\" minutes (This \"x\" can also be configured using the \"NotificationInterval\" field in \"serttings.txt\").   
+The repository has a precompiled Windows 10 executable in \"windows10_distribution\" folder. Or you can use the python source code (and pyinstaller package) to build on Mac OS or Linux.   
 The program does not upload any data to any remote server or take any screenshots or any fuzzy stuff like that. The main reason for creating this program is to be non-intrusive and in total control of the user.
 
 ## Table of Contents
